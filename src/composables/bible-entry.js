@@ -21,7 +21,10 @@ export function bibleVerseArray() {
             }
             let stringifyVerseIdentifier = [
                 // BOOK(STR) CHAPTER:VERSE
-            `${bh.getBookName(verse.Book).toLowerCase()} ${verse.Chapter}:${verse.Verse}`]
+            `${bh.getBookName(verse.Book).toLowerCase()} ${verse.Chapter}:${verse.Verse}`,
+                // BOOK(STR) CHAPTER
+            `${bh.getBookName(verse.Book).toLowerCase()} ${verse.Chapter}`
+            ]
             if (
                 verse.Text.toLowerCase().includes(query.toLowerCase()) ||
                 verse.Chapter.toString().includes(query) ||
@@ -119,30 +122,24 @@ export function bibleHelper(){
 
     return{ getBookName };
 }
-// export function bibleEntry() {
+export function expandVerse(){
+    let verseIndex;
+    let verse = ref(null);
 
-//     let bible;
-//     import('../kjv-formatted.json').then(data => {
-//         bible = data.default;
-//     });
-//     let verseIndex;
-//     let chapterIndex;
-//     let verse = ref(null);
+    function initVerse(_verse){
+        verseIndex = bible.findIndex((obj) => obj.Text === _verse.Text);
 
-//     function randomizeVerse() {
-//         verseIndex = Math.floor(Math.random() * (bible.length - 0 + 1));
-//         verse.value = bible[verseIndex];
-//         console.log(verse.value)
-//     }
-//     function previousVerse(){
-//         verseIndex--;
-//         verse.value = bible[verseIndex];
-//     }
-//     function nextVerse(){
-//         verseIndex++;
-//         verse.value = bible[verseIndex];
-//     }
+        verse.value = bible[verseIndex];
+    };
+    function previousVerse(){
+        verseIndex--;
+        verse.value = bible[verseIndex];
+    }
+    function nextVerse(){
+        verseIndex++;
+        verse.value = bible[verseIndex];
+    }
 
-//     return { bible, verse, randomizeVerse, previousVerse, nextVerse };
-// }
+    return { verse, initVerse, previousVerse, nextVerse }
+}
 
