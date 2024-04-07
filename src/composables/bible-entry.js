@@ -5,12 +5,38 @@ export function bibleVerseArray() {
     let verseIndex;
     let verses = ref([]);
 
+    function resetVerses(){
+        verses.value = [];
+        console.log('verses reset.');
+    }
     function addNewVerse() {
         verseIndex = Math.floor(Math.random() * (bible.length - 0 + 1));
         verses.value.push(bible[verseIndex]);
     }
+    function addNewVersesWithSearchQuery(query){
+        const bh = bibleHelper();
+        bible.some((verse) => {
+            if (verses.value.includes(verse)) {
+                return false;
+            }
+            let stringifyVerseIdentifier = [
+                // BOOK(STR) CHAPTER:VERSE
+            `${bh.getBookName(verse.Book).toLowerCase()} ${verse.Chapter}:${verse.Verse}`]
+            if (
+                verse.Text.toLowerCase().includes(query.toLowerCase()) ||
+                verse.Chapter.toString().includes(query) ||
+                verse.Verse.toString().includes(query) || 
+                bh.getBookName(verse.Book).toLowerCase().includes(query.toLowerCase()) ||
+                stringifyVerseIdentifier.includes(query.toLowerCase())
+            ) { 
+                verses.value.push(verse);
+                return true; // Stops the loop
+            }
+            return false; // Continues to the next iteration
+        });
+    }
 
-    return { verses, addNewVerse };
+    return { verses, addNewVerse, addNewVersesWithSearchQuery, resetVerses };
 }
 export function bibleHelper(){
     function getBookName(bookNum){
