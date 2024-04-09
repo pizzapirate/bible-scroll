@@ -12,3 +12,10 @@
     --epicItem: #A335EE;
     --legendaryItem: #FF8000;
 }
+
+.hover-grow {
+    cursor: pointer;
+}
+.hover-grow:hover {
+    transform: scale(105%);
+}

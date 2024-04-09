@@ -102,15 +102,25 @@ onUnmounted(()=>{
       </svg>
     </button>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+        <h5 class="offcanvas-title" id="offcanvasLabel">Bible Scroll</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <p>About</p>
-        <p>Home</p>
-        <p>Donate</p>
+        <ul class="navbar-nav flex-grow-1 justify-content-between">
+              <!--LOGO-->
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <svg class="bi" width="24" height="24"><use xlink:href="#aperture"></use></svg>
+                </a>
+              </li> -->
+              <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Donate</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Open-source</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
       </div>
     </div>
 
@@ -118,7 +128,7 @@ onUnmounted(()=>{
 
   <div class="container d-flex flex-column gap-5 position-relative">
 
-    <div v-for="verse in bva.verses.value" class="card shadow-sm mx-2" @click="expandVerseHandler(verse)">
+    <div v-for="verse in bva.verses.value" class="card shadow-sm mx-2 hover-grow" @click="expandVerseHandler(verse)">
       <div class="card-body">
         <blockquote class="blockquote mb-0">
           <p>{{ verse.Text ? verse.Text : 'Something went wrong :(' }}</p>
@@ -145,7 +155,7 @@ onUnmounted(()=>{
         </div>
       </div>
 
-      <div class="container d-flex justify-content-between position-absolute bottom-0 mb-5">
+      <div class="d-flex position-absolute bottom-0 w-100 justify-content-between p-3 p-md-5">
         <button class="btn btn-circle btn-dark shadow-sm" type="button" name="Previous Verse" title="Previous Verse" @click="ev.previousVerse()">
           <svg width="24" height="24" fill="currentColor">
             <use href="/src/assets/bootstrap-icons.svg#arrow-left"/>
