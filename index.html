@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="/src/css/bootstrap.css"/> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/src/css/core.css"/>
   </head>
   <body>
     
@@ -13,13 +14,21 @@
         <a class="navbar-brand" href="#">
           Bible Scroll
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button type="button" class="navbar-toggler btn btn-primary btn-circle shadow-sm " name="Menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvas">
+          <svg width="24" height="24" fill="currentColor">
+            <use href="/src/assets/bootstrap-icons.svg#three-dots-vertical"/>
+          </svg>
         </button>
+
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-          <div class="offcanvas-header">
+          <div class="offcanvas-header justify-content-between">
             <h5 class="offcanvas-title" id="offcanvasLabel">Bible Scroll</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn btn-primary btn-circle shadow-sm" data-bs-dismiss="offcanvas" aria-label="Close">
+              <svg width="24" height="24" fill="currentColor">
+                <use href="/src/assets/bootstrap-icons.svg#arrow-90deg-right"/>
+              </svg>
+            </button>
+
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav flex-grow-1 justify-content-between">
@@ -41,26 +50,34 @@
     </nav>
 
     <!--HERO-->
-    <div class="container col-xxl-8 px-4 py-5">
-      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div class="col-10 col-sm-8 col-lg-6">
-          <img src="https://picsum.photos/700/500" class="d-block mx-lg-auto img-fluid shadow-sm outline rounded-3" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
-        </div>
-        <div class="col-lg-6">
-          <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Bible Scroll</h1>
-          <p class="lead">
-            <strong>Rekindle</strong> your faith and browse <strong>randomly generated verses of the Holy Bible</strong> 
-            in a manner that aligns with <i>modern-life</i> and <i>technology usage</i>. 
-          </p>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <a href="/app.html" class="btn btn-primary btn-lg px-4 gap-3" title="Start Scrolling">Get Scrolling</a>
+    <div class="py-5 main-hero-container d-flex align-items-center">
+      <div class="container">
+
+        <div class="row flex-lg-row-reverse gy-3 align-items-center">
+
+          <div class="col-12 col-md-6">
+            <img src="/src/assets/images/lukas-meier-aAxn9pYE8L0-unsplash.jpg" class="d-block mx-lg-auto img-fluid shadow-sm outline rounded-3" 
+            alt="A Rennaisance painting photograph by Lukas Meier" title="Lukas Meier | https://unsplash.com/@lumnezia" width="700" height="500" loading="lazy">
           </div>
+  
+          <div class="col-12 col-md-6">
+            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Bible Scroll</h1>
+            <p class="lead">
+              <strong>Rekindle</strong> your faith and browse <strong>randomly generated verses of the Holy Bible</strong> 
+              in a manner that aligns with <i>modern-life</i> and <i>technology usage</i>. 
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+              <a href="/app.html" class="btn btn-primary btn-lg px-4 gap-3" title="Start Scrolling">Get Scrolling</a>
+            </div>
+          </div>
+  
         </div>
+
       </div>
     </div>
 
     <!--FEATURES-->
-    <div class="container px-4 py-5" id="featured-3">
+    <div class="container px-3 py-5" id="featured-3">
       <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
         <div class="feature col">
           <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 p-2 rounded">
@@ -100,7 +117,7 @@
     </div>
     
     <!--HERO-->
-    <div class="px-4 py-5 my-5 text-center">
+    <div class="px-3 py-5 my-5 text-center">
       <h2 class="display-5 fw-bold text-body-emphasis">Support the Developer</h1>
       <div class="col-lg-6 mx-auto">
         <p class="lead mb-4">
@@ -133,5 +150,18 @@
 
     <!-- <script type="module" src="/src/js/bootstrap.js"></script> -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      window.addEventListener('resize', setHeight);
+
+      function setHeight() {
+          const mhc = document.querySelector('.main-hero-container');
+          const nb = document.querySelector('.navbar');
+          const nbHeight = nb.offsetHeight;
+          const windowHeight = window.innerHeight;
+          mhc.style.minHeight = `${windowHeight - nbHeight}px`;
+      }
+
+      setHeight();
+    </script>
   </body>
 </html>

@@ -96,16 +96,20 @@ onUnmounted(()=>{
 
     <input v-if="displaySearchInput" @input="searchHandler" v-model="searchQuery" type="text" class="form-control shadow-sm" placeholder="Search" aria-label="Search" name="Search input">
 
-    <button type="button" class="btn btn-outline-secondary btn-circle shadow-sm" name="Menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
+    <button type="button" class="btn btn-outline-secondary btn-circle shadow-sm" name="Menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvas">
       <svg width="24" height="24" fill="currentColor">
         <use href="/src/assets/bootstrap-icons.svg#three-dots-vertical"/>
       </svg>
     </button>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasLabel">
-      <div class="offcanvas-header">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+      <div class="offcanvas-header justify-content-between">
         <h5 class="offcanvas-title" id="offcanvasLabel">Bible Scroll</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn btn-circle btn-outline-secondary" data-bs-dismiss="offcanvas" aria-label="Close">
+          <svg width="24" height="24" fill="currentColor">
+            <use href="/src/assets/bootstrap-icons.svg#arrow-90deg-right"/>
+          </svg>
+        </button>
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav flex-grow-1 justify-content-between">
@@ -126,48 +130,60 @@ onUnmounted(()=>{
 
   </div>
 
-  <div class="container d-flex flex-column gap-5 position-relative">
+  <div class="container">
+    <div class="row justify-content-center">
 
-    <div v-for="verse in bva.verses.value" class="card shadow-sm mx-2 hover-grow" @click="expandVerseHandler(verse)">
-      <div class="card-body">
-        <blockquote class="blockquote mb-0">
-          <p>{{ verse.Text ? verse.Text : 'Something went wrong :(' }}</p>
-          <footer class="blockquote-footer mt-4">
-            {{ bh.getBookName(verse.Book) }}
-            <cite title="Location">{{verse.Chapter ? verse.Chapter : 'Unknown'}} : {{ verse.Verse ? verse.Verse : 'Unknown' }}</cite>
-          </footer>
-        </blockquote>
-      </div>
-    </div>
-
-    <div v-if="displayExpandedVerse" class="expanded-verse-container d-flex justify-content-center flex-column gap-2
-     position-fixed start-0 top-0 end-0 bottom-0 bg-dark bg-opacity-25 bg-blur">
-
-      <div class="card shadow-sm mx-2">
-        <div class="card-body">
-          <blockquote class="blockquote mb-0">
-            <p>{{ev.verse.value.Text ? ev.verse.value.Text : "Something went wrong :("}}</p>
-            <footer class="blockquote-footer mt-4">
-              {{ bh.getBookName(ev.verse.value.Book) }}
-              <cite title="Location">{{ev.verse.value.Chapter ? ev.verse.value.Chapter : 'Unknown'}} : {{ ev.verse.value.Verse ? ev.verse.value.Verse : 'Unknown' }}</cite>
-            </footer>
-          </blockquote>
+      <div class="col col-lg-9 d-flex flex-column gap-5 position-relative ">
+        <div v-for="verse in bva.verses.value" class="card shadow-sm mx-2" @click="expandVerseHandler(verse)">
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>{{ verse.Text ? verse.Text : 'Something went wrong :(' }}</p>
+              <footer class="blockquote-footer mt-4">
+                {{ bh.getBookName(verse.Book) }}
+                <cite title="Location">{{verse.Chapter ? verse.Chapter : 'Unknown'}} : {{ verse.Verse ? verse.Verse : 'Unknown' }}</cite>
+              </footer>
+            </blockquote>
+          </div>
         </div>
       </div>
 
-      <div class="d-flex position-absolute bottom-0 w-100 justify-content-between p-3 p-md-5">
-        <button class="btn btn-circle btn-dark shadow-sm" type="button" name="Previous Verse" title="Previous Verse" @click="ev.previousVerse()">
-          <svg width="24" height="24" fill="currentColor">
-            <use href="/src/assets/bootstrap-icons.svg#arrow-left"/>
-          </svg>
-        </button>
-        <button class="btn btn-circle btn-dark shadow-sm" type="button" name="Next Verse" title="Next Verse" @click="ev.nextVerse()">
-          <svg width="24" height="24" fill="currentColor">
-            <use href="/src/assets/bootstrap-icons.svg#arrow-right"/>
-          </svg>
-        </button>
-      </div>
+    </div>
+  </div>
 
+
+  <div v-if="displayExpandedVerse" class="d-flex justify-content-center flex-column gap-2 position-fixed start-0 top-0 end-0 bottom-0 bg-dark bg-opacity-25 bg-blur">
+
+    <div class="container">
+      <div class="row justify-content-center">
+        
+        <div class="col col-lg-10 card shadow-sm mx-2">
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>{{ev.verse.value.Text ? ev.verse.value.Text : "Something went wrong :("}}</p>
+              <footer class="blockquote-footer mt-4">
+                {{ bh.getBookName(ev.verse.value.Book) }}
+                <cite title="Location">{{ev.verse.value.Chapter ? ev.verse.value.Chapter : 'Unknown'}} : {{ ev.verse.value.Verse ? ev.verse.value.Verse : 'Unknown' }}</cite>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="position-absolute bottom-0 w-100 pb-3 pb-lg-5">
+      <div class="container d-flex justify-content-between">
+        <button class="btn btn-circle btn-dark shadow-sm" type="button" name="Previous Verse" title="Previous Verse" @click="ev.previousVerse()">
+            <svg width="24" height="24" fill="currentColor">
+              <use href="/src/assets/bootstrap-icons.svg#arrow-left"/>
+            </svg>
+          </button>
+          <button class="btn btn-circle btn-dark shadow-sm" type="button" name="Next Verse" title="Next Verse" @click="ev.nextVerse()">
+            <svg width="24" height="24" fill="currentColor">
+              <use href="/src/assets/bootstrap-icons.svg#arrow-right"/>
+            </svg>
+          </button>
+      </div> 
     </div>
 
   </div>
@@ -175,19 +191,11 @@ onUnmounted(()=>{
 </template>
 
 <style scoped>
+.card {
+  cursor: pointer;
+}
 .card-body {
   min-height: 200px;
-}
-.btn-circle {
-  border-radius: 100%;
-  min-width: 45px;
-  max-width: 45px;
-  min-height: 45px;
-  max-height: 45px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: unset;
 }
 .bg-blur {
   -webkit-backdrop-filter: blur(3px);
