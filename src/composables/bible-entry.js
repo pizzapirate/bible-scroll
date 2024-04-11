@@ -7,7 +7,6 @@ export function bibleVerseArray() {
 
     function resetVerses(){
         verses.value = [];
-        console.log('verses reset.');
     }
     function addNewVerse() {
         verseIndex = Math.floor(Math.random() * (bible.length - 0 + 1));

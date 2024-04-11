@@ -5,19 +5,20 @@ import { bibleVerseArray, bibleHelper, expandVerse } from '../composables/bible-
 const bva = bibleVerseArray();
 const bh = bibleHelper();
 const ev = expandVerse();
-var mode = 0; // 0 : randomnly generate verses; 1 : generate verses that follow search params
+const mode = ref(0); // 0 : randomnly generate verses; 1 : generate verses that follow search params; 2: no results for param
 
 const displayExpandedVerse = ref(false);
 const displaySearchInput = ref(false);
 const searchQuery = ref(null);
 
+
 function searchHandler(){
   if (searchQuery.value !== null && searchQuery.value.trim() !== "") {
-    mode = 1;
+    mode.value = 1;
     bva.resetVerses();
     getVerses();
   } else { 
-    mode = 0;
+    mode.value = 0;
     bva.resetVerses();
     getVerses();
   };
@@ -28,7 +29,7 @@ function searchButtonHandler(){
 };
 function closeButtonHandler() {
   if (displayExpandedVerse.value) {displayExpandedVerse.value = false}
-  else if (mode === 1 && searchQuery.value !== null) {
+  else if ((mode.value === 1 || mode.value === 2 ) && searchQuery.value !== null) {
     searchQuery.value = null;
     searchHandler();
   };
@@ -40,12 +41,12 @@ const loadMoreVerses = () => {
   const scrollPosition = window.scrollY;
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
-  if (mode === 0 && scrollPosition + windowHeight >= documentHeight - 200) {
+  if (mode.value === 0 && scrollPosition + windowHeight >= documentHeight - 300) {
     for (let i = 0; i < 4; i++) {
       bva.addNewVerse();
     }
   }
-  else  if (mode === 1 && scrollPosition + windowHeight >= documentHeight - 200) {
+  else  if (mode.value === 1 && scrollPosition + windowHeight >= documentHeight - 300) {
     for (let i = 0; i < 4; i++) {
       bva.addNewVersesWithSearchQuery(searchQuery.value);
     }
@@ -56,13 +57,16 @@ function getVerses(){
   const maxVerses = Math.floor(window.innerHeight / 200); // each card is approximately 200px
 
   for (let i = bva.verses.value.length; i < maxVerses; i++) {
-    if (mode === 0) {bva.addNewVerse(); }
-    else if (mode === 1) { bva.addNewVersesWithSearchQuery(searchQuery.value); }
+    if (mode.value === 0) {bva.addNewVerse(); }
+    else if (mode.value === 1) { bva.addNewVersesWithSearchQuery(searchQuery.value); }
   }
+
+  setTimeout(() => {
+      if (bva.verses.value <= 0) { mode.value = 2;}
+    }, 1);
 }
 
 function expandVerseHandler(verse){
-  console.log(verse);
   ev.initVerse(verse);
   displayExpandedVerse.value = true;
 };
@@ -106,7 +110,7 @@ onUnmounted(()=>{
 
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
         <div class="offcanvas-header justify-content-between">
-          <h5 class="offcanvas-title" id="offcanvasLabel">Bible Scroll</h5>
+          <h5 class="offcanvas-title pacifico" id="offcanvasLabel">Bible Scroll</h5>
           <button type="button" class="btn btn-circle btn-outline-secondary shadow-sm" data-bs-dismiss="offcanvas" aria-label="Close">
             <svg width="24" height="24" fill="currentColor">
               <use href="/src/assets/bootstrap-icons.svg#chevron-right"/>
@@ -134,7 +138,7 @@ onUnmounted(()=>{
   </div>
 
   <!-- VERSE CONTAINER -->
-  <div class="container">
+  <div class="container py-5">
     <div class="row justify-content-center">
 
       <div class="col col-lg-9 d-flex flex-column gap-5 position-relative ">
@@ -192,8 +196,37 @@ onUnmounted(()=>{
 
   </div>
 
-  <div class="bg-danger">
-    <h2>LOADING</h2>
+  <div v-if="(mode === 0 || mode === 1) && bva.verses.value.length <= 0" class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col col-lg-9 text-center">
+          <p class="fs-1 mb-5">Searching the <strong>Holy Bible</strong> for your query...</p>
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div v-if="mode === 1 && bva.verses.value.length > 0" class="py-5 d-flex align-items-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col col-lg-9 text-center">
+          <p class="fs-2">No more verses can be found within the <strong>Holy Bible</strong> that contain your query.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div v-if="mode === 2" class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col col-lg-9 text-center">
+          <p class="fs-2 mb-5">No verses can be found within the <strong>Holy Bible</strong> that contain your query.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
 </template>
