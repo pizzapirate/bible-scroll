@@ -80,56 +80,60 @@ onUnmounted(()=>{
 
 <template>
 
-  <div class="px-2 py-3 sticky-top d-flex flex-row gap-2 justify-content-between bg-white ">
+  <!-- NAVBAR -->
+  <div class="px-2 py-3 sticky-top bg-white ">
+    <div class="container d-flex flex-row gap-2 justify-content-between">
 
-    <button v-if="!displaySearchInput && !displayExpandedVerse" @click="searchButtonHandler()" type="button" class="btn btn-outline-dark btn-circle shadow-sm" name="Search">
-      <svg width="24" height="24" fill="currentColor">
-        <use href="/src/assets/bootstrap-icons.svg#search"/>
-      </svg>
-    </button>
+      <button v-if="!displaySearchInput && !displayExpandedVerse" @click="searchButtonHandler()" type="button" class="btn btn-outline-dark btn-circle shadow-sm" name="Search">
+        <svg width="24" height="24" fill="currentColor">
+          <use href="/src/assets/bootstrap-icons.svg#search"/>
+        </svg>
+      </button>
 
-    <button v-if="displaySearchInput || displayExpandedVerse" @click="closeButtonHandler()" type="button" class="btn btn-dark btn-circle shadow-sm" name="Close Search">
-      <svg width="24" height="24" fill="currentColor">
-        <use href="/src/assets/bootstrap-icons.svg#x-lg"/>
-      </svg>
-    </button>
+      <button v-if="displaySearchInput || displayExpandedVerse" @click="closeButtonHandler()" type="button" class="btn btn-dark btn-circle shadow-sm" name="Close Search">
+        <svg width="24" height="24" fill="currentColor">
+          <use href="/src/assets/bootstrap-icons.svg#x-lg"/>
+        </svg>
+      </button>
 
-    <input v-if="displaySearchInput" @input="searchHandler" v-model="searchQuery" type="text" class="form-control shadow-sm" placeholder="Search" aria-label="Search" name="Search input">
+      <input v-if="displaySearchInput" @input="searchHandler" v-model="searchQuery" type="text" class="form-control shadow-sm" placeholder="Search" aria-label="Search" name="Search input">
 
-    <button type="button" class="btn btn-outline-secondary btn-circle shadow-sm" name="Menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvas">
-      <svg width="24" height="24" fill="currentColor">
-        <use href="/src/assets/bootstrap-icons.svg#three-dots-vertical"/>
-      </svg>
-    </button>
+      <button type="button" class="btn btn-outline-secondary btn-circle shadow-sm" name="Menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvas">
+        <svg width="24" height="24" fill="currentColor">
+          <use href="/src/assets/bootstrap-icons.svg#three-dots-vertical"/>
+        </svg>
+      </button>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-      <div class="offcanvas-header justify-content-between">
-        <h5 class="offcanvas-title" id="offcanvasLabel">Bible Scroll</h5>
-        <button type="button" class="btn btn-circle btn-outline-secondary" data-bs-dismiss="offcanvas" aria-label="Close">
-          <svg width="24" height="24" fill="currentColor">
-            <use href="/src/assets/bootstrap-icons.svg#arrow-90deg-right"/>
-          </svg>
-        </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+        <div class="offcanvas-header justify-content-between">
+          <h5 class="offcanvas-title" id="offcanvasLabel">Bible Scroll</h5>
+          <button type="button" class="btn btn-circle btn-outline-secondary shadow-sm" data-bs-dismiss="offcanvas" aria-label="Close">
+            <svg width="24" height="24" fill="currentColor">
+              <use href="/src/assets/bootstrap-icons.svg#chevron-right"/>
+            </svg>
+          </button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav flex-grow-1 justify-content-between">
+                <!--LOGO-->
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <svg class="bi" width="24" height="24"><use xlink:href="#aperture"></use></svg>
+                  </a>
+                </li> -->
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="/donate.html">Donate</a></li>
+                <li class="nav-item"><a class="nav-link" href="/opensource.html">Open-source</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
+              </ul>
+        </div>
       </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav flex-grow-1 justify-content-between">
-              <!--LOGO-->
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg class="bi" width="24" height="24"><use xlink:href="#aperture"></use></svg>
-                </a>
-              </li> -->
-              <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Donate</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Open-source</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-            </ul>
-      </div>
+
     </div>
-
   </div>
 
+  <!-- VERSE CONTAINER -->
   <div class="container">
     <div class="row justify-content-center">
 
@@ -150,7 +154,7 @@ onUnmounted(()=>{
     </div>
   </div>
 
-
+  <!-- EXPANDED VERSE CONTAINER -->
   <div v-if="displayExpandedVerse" class="d-flex justify-content-center flex-column gap-2 position-fixed start-0 top-0 end-0 bottom-0 bg-dark bg-opacity-25 bg-blur">
 
     <div class="container">
@@ -186,6 +190,10 @@ onUnmounted(()=>{
       </div> 
     </div>
 
+  </div>
+
+  <div class="bg-danger">
+    <h2>LOADING</h2>
   </div>
 
 </template>
