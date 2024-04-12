@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home | Bible Scroll</title>
-    <!-- <link rel="stylesheet" href="/src/css/bootstrap.css"/> -->
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/src/css/core.css"/>
   </head>
@@ -42,7 +42,6 @@
               <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
               <li class="nav-item"><a class="nav-link" href="/app.html">App</a></li>
               <li class="nav-item"><a class="nav-link" href="/donate.html">Donate</a></li>
-              <li class="nav-item"><a class="nav-link" href="/opensource.html">Open-source</a></li>
               <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
             </ul>
           </div>
@@ -119,7 +118,6 @@
       </div>
     </div>
     
-    
     <!--SUPPORT HERO-->
     <div class="py-5 d-flex align-items-center">
       <div class="container text-center">
@@ -138,6 +136,15 @@
       </div>
     </div>
 
+    <!--DONATE TOAST-->
+    <div id="donateCTA" class="position-fixed bottom-0 end-0 p-3 m-2 m-md-3 m-lg-4 bg-body-tertiary rounded shadow">
+      <div class="d-flex w-100 justify-content-between gap-3">
+        <p class="flex-wrap">Support by <span class="pacifico">Buying me a Coffee!</span></p>
+        <button type="button" class="btn-close" aria-label="Close" onclick="closeDonateCTA()"></button>
+      </div>
+      <a class="btn btn-small btn-primary" href="/donate.html">Learn more</a>
+    </div>
+
     <!--FOOTER-->
     <div class="py-5 d-flex align-items-center">
       <div class="container">
@@ -147,10 +154,9 @@
             <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="/about.html">About</a></li>
             <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="/app.html">App</a></li>
             <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="/donate.html">Donate</a></li>
-            <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="/opensource.html">Open-source</a></li>
             <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="/contact.html">Contact</a></li>
           </ul>
-          <p class="text-center text-body-secondary">Bible Scroll | 2024</p>
+          <p class="text-center text-body-secondary">Bible Scroll 2024</p>
           <p>
             Designed with <span class="text-decoration-underline">love</span> by a <strong>Christian</strong>, for <strong>everyone</strong>. 
           </p>
@@ -174,6 +180,10 @@
       }
 
       setHeight();
+
+      function closeDonateCTA() {
+        document.querySelector('#donateCTA').style.display = 'none';
+      }
     </script>
   </body>
 </html>

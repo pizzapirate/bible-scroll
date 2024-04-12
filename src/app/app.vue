@@ -128,7 +128,6 @@ onUnmounted(()=>{
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="/donate.html">Donate</a></li>
-                <li class="nav-item"><a class="nav-link" href="/opensource.html">Open-source</a></li>
                 <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
               </ul>
         </div>
