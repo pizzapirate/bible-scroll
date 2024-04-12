@@ -8,12 +8,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
+        index: resolve(__dirname, 'index.html'),
         app: resolve(__dirname, 'app.html'),
-        about: resolve(__dirname, 'about.html'),
-        contact: resolve(__dirname, 'contact.html'),
-        donate: resolve(__dirname, 'donate.html'),
-        opensource: resolve(__dirname, 'opensource.html'),
+        about: resolve(__dirname, 'about.html')
       },
     },
   }
