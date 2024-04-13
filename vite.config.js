@@ -12,9 +12,7 @@ export default defineConfig({
         app: resolve(__dirname, 'app.html'),
         about: resolve(__dirname, 'about.html'),
         contact: resolve(__dirname, 'contact.html'),
-        donate: resolve(__dirname, 'donate.html'),
-        sitemap: resolve(__dirname, 'sitemap.xml'),
-        robots: resolve(__dirname, 'robots.txt')
+        donate: resolve(__dirname, 'donate.html')
       },
     },
   }
