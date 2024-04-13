@@ -110,7 +110,8 @@ onUnmounted(()=>{
 
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
         <div class="offcanvas-header justify-content-between">
-          <h5 class="offcanvas-title pacifico" id="offcanvasLabel">Bible Scroll</h5>
+          <!-- <h5 class="offcanvas-title pacifico" id="offcanvasLabel">Bible Scroll</h5> -->
+          <img src="/src/assets/bible-scroll-logo.svg" height="60">
           <button type="button" class="btn btn-circle btn-outline-secondary shadow-sm" data-bs-dismiss="offcanvas" aria-label="Close">
             <svg width="24" height="24" fill="currentColor">
               <use href="/src/assets/bootstrap-icons.svg#chevron-right"/>
@@ -129,7 +130,11 @@ onUnmounted(()=>{
                 <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="/donate.html">Donate</a></li>
                 <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
-              </ul>
+          </ul>
+          <hr>
+          <p class="fs-6 lead">
+            Jesus loves and forgives you, and everyone else including those that don't believe.
+          </p>
         </div>
       </div>
 
@@ -139,7 +144,7 @@ onUnmounted(()=>{
   <!-- VERSE CONTAINER -->
   <div class="container py-5">
     <div class="row justify-content-center">
-
+      
       <div class="col col-lg-9 d-flex flex-column gap-5 position-relative ">
         <div v-for="verse in bva.verses.value" class="card shadow-sm mx-2" @click="expandVerseHandler(verse)">
           <div class="card-body">

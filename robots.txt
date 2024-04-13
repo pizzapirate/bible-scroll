@@ -1,0 +1,2 @@
+Sitemap: https://www.bible-scroll.app/sitemap.xml
+Host: https://www.bible-scroll.app/
