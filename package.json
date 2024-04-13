@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "npm run copy-files && vite build",
+    "build": "npm run copy-files && npm run vite build",
     "preview": "vite preview",
     "copy-files": "copy robots.txt dist && copy sitemap.xml dist"
   },
