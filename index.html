@@ -3,17 +3,188 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/css/bootstrap.css"/>
+    <title>Home | Bible Scroll</title>
+    <meta name="description" content="Endlessly scroll through verses of the Holy Bible in a modern and highly responsive fashion. The Holy Bible in all its entirety directly from your device.">
+
+    <link rel="icon" type="image/x-icon" href="/src/assets/bible-scroll-logo.svg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/src/css/core.css"/>
+
+    <script defer src="https://eu.umami.is/script.js" data-website-id="c43f2413-a414-4e2e-a19f-3f1329a6b885"></script>
   </head>
   <body>
-    <!-- <div class="container">
-      for seo purposes this is where the title will go
-    </div> -->
-    <div id="app"></div>
-    <div class="container">
-      FOOTER
+    
+    <nav class="navbar navbar-expand-md bg-light  sticky-top border-bottom" data-bs-theme="light">
+      <div class="container">
+        <a class="navbar-brand pacifico d-flex align-items-center gap-2" href="/">
+          <img src="/src/assets/bible-scroll-logo.svg" height="40">
+          <span>Bible Scroll</span>
+        </a>
+        <button type="button" class="navbar-toggler btn btn-primary btn-circle shadow-sm " name="Menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvas">
+          <svg width="24" height="24" fill="currentColor">
+            <use href="/src/assets/bootstrap-icons.svg#three-dots-vertical"/>
+          </svg>
+        </button>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+          <div class="offcanvas-header justify-content-between">
+            <img src="/src/assets/bible-scroll-logo.svg" height="60">
+            <!-- <h5 class="offcanvas-title pacifico" id="offcanvasLabel">Bible Scroll</h5> -->
+            <button type="button" class="navbar-toggler btn btn-circle shadow-sm" data-bs-dismiss="offcanvas" aria-label="Close">
+              <svg width="24" height="24" fill="currentColor">
+                <use href="/src/assets/bootstrap-icons.svg#chevron-right"/>
+              </svg>
+            </button>
+
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav flex-grow-1 justify-content-end gap-3">
+              <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="/app">App</a></li>
+              <li class="nav-item"><a class="nav-link" href="/donate">Donate</a></li>
+              <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!--MAIN HERO-->
+    <div class="py-5 main-hero-container d-flex align-items-center">
+      <div class="container">
+
+        <div class="row flex-lg-row-reverse gy-3 align-items-center">
+
+          <div class="col-12 col-md-6">
+            <img src="/src/assets/images/lukas-meier-aAxn9pYE8L0-unsplash.jpg" class="d-block mx-lg-auto img-fluid shadow-sm outline rounded-3" 
+            alt="A Rennaisance painting photograph by Lukas Meier" title="Lukas Meier | https://unsplash.com/@lumnezia" width="700" height="500" loading="lazy">
+          </div>
+  
+          <div class="col-12 col-md-6 d-flex gap-lg-3 flex-column">
+            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3 pacifico">Bible Scroll</h1>
+            <p class="lead">
+              <strong>Rekindle</strong> your faith and browse <strong>randomly generated verses of the Holy Bible</strong> 
+              in a manner that aligns with <i>modern-life</i> and <i>technology usage</i>. 
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+              <a href="/app" class="btn btn-dark btn-lg px-4 gap-3" title="Start Scrolling">Get Scrolling</a>
+            </div>
+          </div>
+  
+        </div>
+
+      </div>
     </div>
+
+    <!--FEATURES-->
+    <div class="py-5 d-flex align-items-center">
+      <div class="container">
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+          <div class="feature col d-flex gap-3 flex-column">
+            <div class="mb-3">
+              <svg width="30" height="30" fill="currentColor">
+                <use href="/src/assets/bootstrap-icons.svg#infinity"/>
+              </svg>
+            </div>
+            <h3 class="fs-2 text-body-emphasis pacifico">Modern</h3>
+            <p>
+              Endlessly scroll through verses of the Holy Bible in a modern and highly responsive fashion.
+            </p>
+          </div>
+          <div class="feature col d-flex gap-3 flex-column">
+            <div class="mb-3">
+              <svg width="30" height="30" fill="currentColor">
+                <use href="/src/assets/bootstrap-icons.svg#chat-square-heart"/>
+              </svg>
+            </div>
+            <h3 class="fs-2 text-body-emphasis pacifico">Free Forever</h3>
+            <p>
+              Experience the Holy Bible in a free and ad-less experience, ran on donations and kindness, by a single developer.
+            </p>
+          </div>
+          <div class="feature col d-flex gap-3 flex-column">
+            <div class="mb-3">
+              <svg width="30" height="30" fill="currentColor">
+                <use href="/src/assets/bootstrap-icons.svg#hand-thumbs-up"/>
+              </svg>
+            </div>
+            <h3 class="fs-2 text-body-emphasis pacifico">Positive</h3>
+            <p>
+              Instead of scrolling social media sites and consuming potentially negative or toxic content, scroll through verses from the Holy Bible.
+            </p>
+          </div>
+        </div>
+        <a href="/about" class="btn btn-dark px-4 gap-3" title="Start Scrolling">Learn more</a>
+      </div>
+    </div>
+    
+    <!--SUPPORT HERO-->
+    <div class="py-5 d-flex align-items-center">
+      <div class="container text-center">
+        <h2 class="display-5 fw-bold text-body-emphasis">Support the Developer</h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4">
+            This service has been created by a <span class="text-decoration-underline">single person</span>. It has been created to provide ease of access in a <i>modernized</i> form to the <strong>Holy Bible</strong> for others. 
+          </p>
+          <p class="lead mb-4">
+            If you have found this service useful, and are <i>feeling generous</i>, you may consider donating to the developer, so that they can continue doing <strong>God’s work</strong>.  
+          </p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="/donate" class="btn btn-dark btn-lg px-4 gap-3" title="Start Scrolling">Learn more about donating</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--DONATE TOAST-->
+    <div id="donateCTA" class="position-fixed bottom-0 end-0 p-3 m-2 m-md-3 m-lg-4 bg-body-tertiary rounded shadow">
+      <div class="d-flex w-100 justify-content-between gap-3">
+        <p class="flex-wrap">Support by <span class="pacifico">Buying me a Coffee!</span></p>
+        <button type="button" class="btn-close" aria-label="Close" onclick="closeDonateCTA()"></button>
+      </div>
+      <a class="btn btn-dark" href="/donate">Learn more</a>
+    </div>
+
+    <!--FOOTER-->
+    <div class="py-5 d-flex align-items-center">
+      <div class="container">
+        <footer class="py-3 my-4">
+          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="/about">About</a></li>
+            <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="/app">App</a></li>
+            <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="/donate">Donate</a></li>
+            <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="/contact">Contact</a></li>
+          </ul>
+          <p class="text-center text-body-secondary">Bible Scroll 2024</p>
+          <p>
+            Designed with <span class="text-decoration-underline">love</span> by a <strong>Christian</strong>, for <strong>everyone</strong>. 
+          </p>
+          <p>Jesus loves and forgives you, and everyone else including those that don't believe.</p>
+        </footer>
+      </div>
+    </div>
+
+
     <!-- <script type="module" src="/src/js/bootstrap.js"></script> -->
-    <script type="module" src="/src/app/app.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      window.addEventListener('resize', setHeight);
+
+      function setHeight() {
+          const mhc = document.querySelector('.main-hero-container');
+          const nb = document.querySelector('.navbar');
+          const nbHeight = nb.offsetHeight;
+          const windowHeight = window.innerHeight;
+          mhc.style.minHeight = `${windowHeight - nbHeight}px`;
+      }
+
+      setHeight();
+
+      function closeDonateCTA() {
+        document.querySelector('#donateCTA').style.display = 'none';
+      }
+    </script>
   </body>
 </html>
