@@ -1,7 +1,9 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import { bibleVerseArray, bibleHelper, expandVerse } from '../composables/bible-entry';
+import { bibleSelector } from '../composables/bible-selector';
 
+const bs = bibleSelector();
 const bva = bibleVerseArray();
 const bh = bibleHelper();
 const ev = expandVerse();
@@ -130,14 +132,35 @@ onUnmounted(()=>{
                       <use href="/src/assets/bootstrap-icons.svg#gear"/>
             </svg>
             <span>Bible version selector</span>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="kjvSelector">
-              <label class="form-check-label" for="kjvSelector">King James Version (KJV)</label>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Bible Version Selector" id="kjvSelector" @input="bs.changeVersion('kjv'); searchHandler()" checked>
+              <label class="form-check-label" for="kjvSelector">
+                King James Version (KJV)
+              </label>
             </div>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="asvSelector">
-              <label class="form-check-label" for="asvSelector">American Standard Version (ASV)</label>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Bible Version Selector" id="asvSelector" @input="bs.changeVersion('asv'); searchHandler()">
+              <label class="form-check-label" for="asvSelector">
+                American Standard Version (ASV)
+              </label>
             </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Bible Version Selector" id="drbSelector" @input="bs.changeVersion('drb'); searchHandler()">
+              <label class="form-check-label" for="drbSelector">
+                Douay-Rheims Bible (DRB)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Bible Version Selector" id="yltSelector" @input="bs.changeVersion('ylt'); searchHandler()">
+              <label class="form-check-label" for="yltSelector">
+                Young's Literal Translation (YLT)
+              </label>
+            </div>
+
           </div>
 
           <div class="rounded shadow-sm p-3">

@@ -1,5 +1,9 @@
 import { ref } from 'vue'
-import bible from '../kjv-formatted.json';
+import { bibleSelector } from './bible-selector.js';
+
+const bs = bibleSelector();
+
+let bible = bs.bible;
 
 export function bibleVerseArray() {
     let verseIndex;
