@@ -124,14 +124,28 @@ onUnmounted(()=>{
                 <li class="nav-item"><a class="nav-link" href="/donate.html">Donate</a></li>
                 <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
           </ul>
-          <div class="d-flex gap-2 justify-content-between align-items-center rounded shadow-sm p-3">
-            <button class="btn btn-circle btn-outline-secondary shadow-sm">
-                    <svg width="24" height="24" fill="currentColor">
+
+          <div class="d-flex flex-column gap-2 rounded shadow-sm p-3 position-relative">
+            <svg class="position-absolute top-0 end-0 m-3" width="24" height="24" fill="grey">
                       <use href="/src/assets/bootstrap-icons.svg#gear"/>
-                    </svg>
-            </button>
-            <span class="fs-6">You are currently viewing the BIBLE_VERSION</span>
+            </svg>
+            <span>Bible version selector</span>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="kjvSelector">
+              <label class="form-check-label" for="kjvSelector">King James Version (KJV)</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="asvSelector">
+              <label class="form-check-label" for="asvSelector">American Standard Version (ASV)</label>
+            </div>
           </div>
+
+          <div class="rounded shadow-sm p-3">
+            <p class="flex-wrap">Support by <span class="pacifico">Buying me a Coffee!</span></p>
+            <a class="btn btn-dark" href="/donate">Learn more</a>
+          </div>
+
+
 
           <hr>
           <p class="fs-6 lead">
