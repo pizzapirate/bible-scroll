@@ -147,20 +147,6 @@ onUnmounted(()=>{
               </label>
             </div>
 
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="Bible Version Selector" id="drbSelector" @input="bs.changeVersion('drb'); searchHandler()">
-              <label class="form-check-label" for="drbSelector">
-                Douay-Rheims Bible (DRB)
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="Bible Version Selector" id="yltSelector" @input="bs.changeVersion('ylt'); searchHandler()">
-              <label class="form-check-label" for="yltSelector">
-                Young's Literal Translation (YLT)
-              </label>
-            </div>
-
           </div>
 
           <div class="rounded shadow-sm p-3">

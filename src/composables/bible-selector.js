@@ -11,6 +11,7 @@ export function bibleSelector() {
             // Dynamically import the JSON file based on the path
             import(version.path).then(newBible => {
                 bible = newBible.default; // Assuming JSON file is ES module
+                console.log(bible);
             }).catch(err => {
                 console.error("Error loading Bible version:", err);
             });
