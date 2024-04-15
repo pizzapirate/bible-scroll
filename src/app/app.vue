@@ -110,7 +110,6 @@ onUnmounted(()=>{
 
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
         <div class="offcanvas-header justify-content-between">
-          <!-- <h5 class="offcanvas-title pacifico" id="offcanvasLabel">Bible Scroll</h5> -->
           <img src="/src/assets/bible-scroll-logo.svg" height="60">
           <button type="button" class="btn btn-circle btn-outline-secondary shadow-sm" data-bs-dismiss="offcanvas" aria-label="Close">
             <svg width="24" height="24" fill="currentColor">
@@ -120,17 +119,20 @@ onUnmounted(()=>{
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav flex-grow-1 justify-content-between">
-                <!--LOGO-->
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <svg class="bi" width="24" height="24"><use xlink:href="#aperture"></use></svg>
-                  </a>
-                </li> -->
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="/donate.html">Donate</a></li>
                 <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
           </ul>
+          <div class="d-flex gap-2 justify-content-between align-items-center rounded shadow-sm p-3">
+            <button class="btn btn-circle btn-outline-secondary shadow-sm">
+                    <svg width="24" height="24" fill="currentColor">
+                      <use href="/src/assets/bootstrap-icons.svg#gear"/>
+                    </svg>
+            </button>
+            <span class="fs-6">You are currently viewing the BIBLE_VERSION</span>
+          </div>
+
           <hr>
           <p class="fs-6 lead">
             Jesus loves and forgives you, and everyone else including those that don't believe.
