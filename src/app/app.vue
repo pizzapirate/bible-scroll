@@ -134,14 +134,14 @@ onUnmounted(()=>{
             <span>Bible version selector</span>
 
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="Bible Version Selector" id="kjvSelector" @input="bs.changeVersion('kjv'); searchHandler()" checked>
+              <input class="form-check-input" type="radio" name="Bible Version Selector" id="kjvSelector" checked>
               <label class="form-check-label" for="kjvSelector">
                 King James Version (KJV)
               </label>
             </div>
 
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="Bible Version Selector" id="asvSelector" @input="bs.changeVersion('asv'); searchHandler()">
+              <input class="form-check-input" type="radio" name="Bible Version Selector" id="asvSelector" >
               <label class="form-check-label" for="asvSelector">
                 American Standard Version (ASV)
               </label>

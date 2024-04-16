@@ -1,5 +1,8 @@
-import kjv from '../bibles/kjv.json'; // default
-let bible = kjv;
+import {ref} from 'vue';
+import kjv from '../bibles/kjv.json';
+import asv from '../bibles/asv.json';
+
+const bible = ref(kjv); // default to kjv
 
 export function bibleSelector() {
 
@@ -8,15 +11,15 @@ export function bibleSelector() {
     function changeVersion(ver) {
         version = versions.find(v => v.name === ver);
         if (version) {
-            // Dynamically import the JSON file based on the path
-            import(version.path).then(newBible => {
-                bible = newBible.default; // Assuming JSON file is ES module
-                console.log(bible);
-            }).catch(err => {
-                console.error("Error loading Bible version:", err);
-            });
-        } else {
-            console.error("Invalid Bible version:", ver);
+            switch(version) {
+                case 'kjv':
+                    bible.value = kjv;
+                    break;
+                case 'asv':
+                    bible.value = asv;
+                    break;
+            }
+            console.log(ver);
         }
     }
 
@@ -24,8 +27,6 @@ export function bibleSelector() {
 }
 
 const versions = [
-    { name: 'kjv', path: '../bibles/kjv.json' },
-    { name: 'asv', path: '../bibles/asv.json' },
-    { name: 'drb', path: '../bibles/drb.json' },
-    { name: 'ylt', path: '../bibles/ylt.json' }
+    { name: 'kjv'},
+    { name: 'asv'}
 ];
