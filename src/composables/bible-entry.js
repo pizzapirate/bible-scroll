@@ -11,7 +11,6 @@ export function bibleVerseArray() {
     let verses = ref([]);
 
     function resetVerses(){
-        console.log('reset verses');
         verses.value = [];
     }
     function addNewVerse() {

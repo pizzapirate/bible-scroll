@@ -86,12 +86,12 @@ function WordHighlighter(){
 
     // FIRST REMOVE EVERY SINGLE <U> FROM THE PAGE AND EXTRACT TEXT FROM IT!! 
     renderedVerses.forEach(v => {
-      v.innerHTML = v.innerHTML.replace(/<u>(.*?)<\/u>/gi, '$1');
+      v.innerHTML = v.innerHTML.replace(/<span class="highlight-word">(.*?)<\/span>/gi, '$1');
     });
 
     const regex = new RegExp(`(${searchQuery.value})`, 'gi');
     renderedVerses.forEach(v => {
-      v.innerHTML = v.innerHTML.replace(regex, '<u>$1</u>');
+      v.innerHTML = v.innerHTML.replace(regex, '<span class="highlight-word">$1</span>');
     });
 
   }, 2)

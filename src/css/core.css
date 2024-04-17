@@ -27,6 +27,6 @@
     align-items: center;
     padding: unset;
 }
-.main-hero-container {
-
+.highlight-word {
+    background-color: gold;
 }
