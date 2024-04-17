@@ -53,6 +53,10 @@ const loadMoreVerses = () => {
       bva.addNewVersesWithSearchQuery(searchQuery.value);
     }
   }
+
+  if (mode.value === 1) {
+      WordHighlighter();
+  }
 };
 function getVerses(){
   // Calculate the maximum number of verses to fill the screen
@@ -60,12 +64,37 @@ function getVerses(){
 
   for (let i = bva.verses.value.length; i < maxVerses; i++) {
     if (mode.value === 0) {bva.addNewVerse(); }
-    else if (mode.value === 1) { bva.addNewVersesWithSearchQuery(searchQuery.value); }
+    else if (mode.value === 1) { 
+      bva.addNewVersesWithSearchQuery(searchQuery.value); 
+    }
   }
 
   setTimeout(() => {
       if (bva.verses.value <= 0) { mode.value = 2;}
     }, 1);
+  
+    if (mode.value === 1) {
+      WordHighlighter();
+    }
+
+}
+
+function WordHighlighter(){
+    // WORD HIGHLIGHTER
+  setTimeout(() => {
+    const renderedVerses = document.querySelectorAll('.bible-verse');
+
+    // FIRST REMOVE EVERY SINGLE <U> FROM THE PAGE AND EXTRACT TEXT FROM IT!! 
+    renderedVerses.forEach(v => {
+      v.innerHTML = v.innerHTML.replace(/<u>(.*?)<\/u>/gi, '$1');
+    });
+
+    const regex = new RegExp(`(${searchQuery.value})`, 'gi');
+    renderedVerses.forEach(v => {
+      v.innerHTML = v.innerHTML.replace(regex, '<u>$1</u>');
+    });
+
+  }, 2)
 }
 
 function expandVerseHandler(verse){
@@ -174,7 +203,7 @@ onUnmounted(()=>{
         <div v-for="verse in bva.verses.value" class="card shadow-sm mx-2" @click="expandVerseHandler(verse)">
           <div class="card-body">
             <blockquote class="blockquote mb-0">
-              <p>{{ verse.Text ? verse.Text : 'Something went wrong :(' }}</p>
+              <p class="bible-verse">{{ verse.Text ? verse.Text : 'Something went wrong :(' }}</p>
               <footer class="blockquote-footer mt-4">
                 {{ bh.getBookName(verse.Book) }}
                 <cite title="Location">{{verse.Chapter ? verse.Chapter : 'Unknown'}} : {{ verse.Verse ? verse.Verse : 'Unknown' }}</cite>
