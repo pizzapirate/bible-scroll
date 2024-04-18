@@ -1,10 +1,10 @@
 import { ref } from 'vue'
-import { bibleSelector } from './bible-selector.js';
-import bible from '../bibles/kjv.json'
+import kjv from '../bibles/kjv.json'
+import esv from '../bibles/esv.json'
+import niv from '../bibles/niv.json'
+import web from '../bibles/web.json'
 
-// const bs = bibleSelector();
-
-// let bible = bs.bible;
+let bible = kjv; // default to KJV
 
 export function bibleVerseArray() {
     let verseIndex;

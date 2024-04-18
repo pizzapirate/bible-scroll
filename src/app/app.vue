@@ -1,9 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import { bibleVerseArray, bibleHelper, expandVerse } from '../composables/bible-entry';
-import { bibleSelector } from '../composables/bible-selector';
 
-const bs = bibleSelector();
 const bva = bibleVerseArray();
 const bh = bibleHelper();
 const ev = expandVerse();
@@ -174,9 +172,23 @@ onUnmounted(()=>{
             </div>
 
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="Bible Version Selector" id="asvSelector" >
-              <label class="form-check-label" for="asvSelector">
-                American Standard Version (ASV)
+              <input class="form-check-input" type="radio" name="Bible Version Selector" id="esvSelector" >
+              <label class="form-check-label" for="esvSelector">
+                English Standard Version (ESV)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Bible Version Selector" id="nivSelector" >
+              <label class="form-check-label" for="nivSelector">
+                New International Version (NIV)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Bible Version Selector" id="webSelector" >
+              <label class="form-check-label" for="webSelector">
+                World English Bible (WEB)
               </label>
             </div>
 
