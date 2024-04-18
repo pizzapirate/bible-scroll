@@ -9,6 +9,7 @@ const bh = bibleHelper();
 const ev = expandVerse();
 const mode = ref(0); // 0 : randomnly generate verses; 1 : generate verses that follow search params; 2: no results for param
 
+const displayQuickStart = ref(true);
 const displayExpandedVerse = ref(false);
 const displaySearchInput = ref(false);
 const searchQuery = ref(null);
@@ -105,6 +106,8 @@ function expandVerseHandler(verse){
 onMounted(() => {
   getVerses();
   window.addEventListener('scroll', loadMoreVerses);
+
+  document.querySelector('#loader').style.display = 'none';
 });
 
 onUnmounted(()=>{
@@ -116,10 +119,10 @@ onUnmounted(()=>{
 <template>
 
   <!-- NAVBAR -->
-  <div class="px-2 py-3 sticky-top bg-white ">
+  <div class="px-2 py-3 sticky-top bg-white">
     <div class="container d-flex flex-row gap-2 justify-content-between">
 
-      <button v-if="!displaySearchInput && !displayExpandedVerse" @click="searchButtonHandler()" type="button" class="btn btn-outline-dark btn-circle shadow-sm" name="Search">
+      <button v-if="!displaySearchInput && !displayExpandedVerse" @click="searchButtonHandler()" type="button" class="btn btn-light border btn-circle shadow-sm" name="Search">
         <svg width="24" height="24" fill="currentColor">
           <use href="/src/assets/bootstrap-icons.svg#search"/>
         </svg>
@@ -133,7 +136,7 @@ onUnmounted(()=>{
 
       <input v-if="displaySearchInput" @input="searchHandler" v-model="searchQuery" type="text" class="form-control shadow-sm" placeholder="Search" aria-label="Search" name="Search input">
 
-      <button type="button" class="btn btn-outline-secondary btn-circle shadow-sm" name="Menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvas">
+      <button type="button" class="btn btn-light border btn-circle shadow-sm" name="Menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvas">
         <svg width="24" height="24" fill="currentColor">
           <use href="/src/assets/bootstrap-icons.svg#three-dots-vertical"/>
         </svg>
@@ -142,7 +145,7 @@ onUnmounted(()=>{
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
         <div class="offcanvas-header justify-content-between">
           <img src="/src/assets/bible-scroll-logo.svg" height="60">
-          <button type="button" class="btn btn-circle btn-outline-secondary shadow-sm" data-bs-dismiss="offcanvas" aria-label="Close">
+          <button type="button" class="btn btn-circle btn-light border shadow-sm" data-bs-dismiss="offcanvas" aria-label="Close">
             <svg width="24" height="24" fill="currentColor">
               <use href="/src/assets/bootstrap-icons.svg#chevron-right"/>
             </svg>
@@ -154,10 +157,10 @@ onUnmounted(()=>{
                 <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="/donate.html">Donate</a></li>
                 <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="/#whats-new">Whats new <span class="badge text-bg-success">NEW</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="/#whats-new">Whats new <span class="badge bg-primary-subtle border border-primary-subtle text-dark">NEW</span></a></li>
           </ul>
 
-          <div class="d-flex flex-column gap-2 rounded shadow-sm p-3 position-relative">
+          <div class="d-flex flex-column gap-2 rounded shadow-sm p-3 position-relative my-2 bg-body-tertiary border border-body-tertiary">
             <svg class="position-absolute top-0 end-0 m-3" width="24" height="24" fill="grey">
                       <use href="/src/assets/bootstrap-icons.svg#gear"/>
             </svg>
@@ -179,7 +182,7 @@ onUnmounted(()=>{
 
           </div>
 
-          <div class="rounded shadow-sm p-3">
+          <div class="rounded shadow-sm p-3 my-3 bg-body-tertiary border border-body-tertiary">
             <p class="flex-wrap">Support by <span class="pacifico">Buying me a Coffee!</span></p>
             <a class="btn btn-dark" href="/donate">Learn more</a>
           </div>
@@ -199,8 +202,32 @@ onUnmounted(()=>{
   <!-- VERSE CONTAINER -->
   <div class="container py-5">
     <div class="row justify-content-center">
-      
+           
       <div class="col col-lg-9 d-flex flex-column gap-5 position-relative ">
+
+        <div v-if="displayQuickStart" class="mx-2 bg-primary-subtle p-3 position-relative">
+          <button @click="displayQuickStart = false" type="button" class="btn-close position-absolute end-0 top-0 m-3" aria-label="Close"></button>
+          <p class="fs-1">Quick start</p>
+          <p>       
+            <svg width="20" height="20" fill="currentColor">
+              <use href="/src/assets/bootstrap-icons.svg#stars"/>
+            </svg>
+            Click the three dots button to open the <strong>menu</strong>.
+          </p>
+          <p>
+            <svg width="20" height="20" fill="currentColor">
+              <use href="/src/assets/bootstrap-icons.svg#stars"/>
+            </svg>
+            Click a verse to <strong>expand</strong> it.
+          </p>
+          <p>
+            <svg width="20" height="20" fill="currentColor">
+              <use href="/src/assets/bootstrap-icons.svg#stars"/>
+            </svg>
+            When a verse is <strong>expanded</strong>, use the arrow buttons to go to the next or previous verse.
+          </p>
+        </div>
+
         <div v-for="verse in bva.verses.value" class="card shadow-sm mx-2" @click="expandVerseHandler(verse)">
           <div class="card-body">
             <blockquote class="blockquote mb-0">
@@ -253,19 +280,6 @@ onUnmounted(()=>{
       </div> 
     </div>
 
-  </div>
-
-  <div v-if="(mode === 0 || mode === 1) && bva.verses.value.length <= 0" class="py-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col col-lg-9 text-center">
-          <p class="fs-1 mb-5">Searching the <strong>Holy Bible</strong> for your query...</p>
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div v-if="mode === 1 && bva.verses.value.length > 0" class="py-5 d-flex align-items-center">

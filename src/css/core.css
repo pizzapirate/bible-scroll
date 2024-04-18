@@ -2,8 +2,6 @@
 :root {
     /* COLORS FROM https://htmlcolorcodes.com/color-chart/flat-design-color-chart/ */
     --gold: #F7DC6F;
-
-    --violet: #c4b5fd;
 }
 .pacifico {
     font-family: "Pacifico", cursive;
@@ -25,4 +23,7 @@
 
 .bg-violet {
     background-color: var(--violet);
+}
+#loader {
+    min-height: 100vh;
 }
