@@ -1,17 +1,9 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 :root {
-    /*WoW colors from : https://pixelimperfectdotcom.wordpress.com/2013/09/05/all-world-of-warcraft-hex-color-codes/ */
-    /*MISC*/
-    --system: #FFFF00;
-    /*CHAT*/
-    --generalChat: #FEC1C0;
-    /*ITEMS*/
-    --poorItem: #889D9D;
-    --commonItem: #FFFFFF;
-    --uncommonItem: #1EFF0C;
-    --rareItem: #0070FF;
-    --epicItem: #A335EE;
-    --legendaryItem: #FF8000;
+    /* COLORS FROM https://htmlcolorcodes.com/color-chart/flat-design-color-chart/ */
+    --sunflower: #F7DC6F;
+
+    --violet-300: #c4b5fd;
 }
 .pacifico {
     font-family: "Pacifico", cursive;
@@ -28,5 +20,9 @@
     padding: unset;
 }
 .highlight-word {
-    background-color: gold;
+    background-color: var(--sunflower);
+}
+
+.bg-violet-300 {
+    background-color: var(--violet-300);
 }
