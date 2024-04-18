@@ -1,9 +1,9 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 :root {
     /* COLORS FROM https://htmlcolorcodes.com/color-chart/flat-design-color-chart/ */
-    --sunflower: #F7DC6F;
+    --gold: #F7DC6F;
 
-    --violet-300: #c4b5fd;
+    --violet: #c4b5fd;
 }
 .pacifico {
     font-family: "Pacifico", cursive;
@@ -20,9 +20,9 @@
     padding: unset;
 }
 .highlight-word {
-    background-color: var(--sunflower);
+    background-color: var(--gold);
 }
 
-.bg-violet-300 {
-    background-color: var(--violet-300);
+.bg-violet {
+    background-color: var(--violet);
 }

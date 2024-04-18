@@ -154,6 +154,7 @@ onUnmounted(()=>{
                 <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="/donate.html">Donate</a></li>
                 <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#whats-new">Whats new <span class="badge text-bg-success">NEW</span></a></li>
           </ul>
 
           <div class="d-flex flex-column gap-2 rounded shadow-sm p-3 position-relative">
