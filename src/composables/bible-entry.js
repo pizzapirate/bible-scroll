@@ -146,4 +146,20 @@ export function expandVerse(){
 
     return { verse, initVerse, previousVerse, nextVerse }
 }
+export function bibleSelector(){
+    const ver = ref('kjv');
 
+    const versions = [
+        {ver: 'kjv', label: 'King James Version (KJV)'},
+        {ver: 'esv', label: 'English Standard Version (ESV)'},
+        {ver: 'niv', label: 'New International Version (NIV)'},
+        {ver: 'web', label: 'World English Bible (WEB)'},
+    ]
+
+    function changeVersion(ver) {
+        // find it from versions 
+        // if it exists, then proceed with change
+        // update ver.value to reflect new version
+    }
+    return { changeVersion, ver }
+}
