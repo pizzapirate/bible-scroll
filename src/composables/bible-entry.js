@@ -1,8 +1,5 @@
 import { ref } from 'vue'
 import kjv from '../bibles/kjv.json'
-// import esv from '../bibles/esv.json'
-// import niv from '../bibles/niv.json'
-// import web from '../bibles/web.json'
 
 let bible = kjv; // default to KJV
 
@@ -162,5 +159,6 @@ export function bibleSelector(){
         bible = bibleModule.default;
         console.log(bibleModule);
     }
+
     return { changeVersion, ver, versions }
 }
