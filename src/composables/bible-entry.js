@@ -1,8 +1,8 @@
 import { ref } from 'vue'
 import kjv from '../bibles/kjv.json'
-import esv from '../bibles/esv.json'
-import niv from '../bibles/niv.json'
-import web from '../bibles/web.json'
+// import esv from '../bibles/esv.json'
+// import niv from '../bibles/niv.json'
+// import web from '../bibles/web.json'
 
 let bible = kjv; // default to KJV
 
@@ -156,21 +156,11 @@ export function bibleSelector(){
         {ver: 'web', label: 'World English Bible (WEB)'},
     ]
 
-    function changeVersion() {
-        switch(ver.value){
-            case 'kjv':
-                bible = kjv;
-                break;
-            case 'esv':
-                bible = esv;
-                break;
-            case 'niv':
-                bible = niv;
-                break;
-            case 'web':
-                bible = web;
-                break;
-        }
+    async function changeVersion() {
+        let version = ver.value;
+        let bibleModule = await import(`../bibles/${ver.value}.json`);
+        bible = bibleModule.default;
+        console.log(bibleModule);
     }
     return { changeVersion, ver, versions }
 }
