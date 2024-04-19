@@ -1,10 +1,11 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import { bibleVerseArray, bibleHelper, expandVerse } from '../composables/bible-entry';
+import { bibleVerseArray, bibleHelper, expandVerse, bibleSelector } from '../composables/bible-entry';
 
 const bva = bibleVerseArray();
 const bh = bibleHelper();
 const ev = expandVerse();
+const bs = bibleSelector();
 const mode = ref(0); // 0 : randomnly generate verses; 1 : generate verses that follow search params; 2: no results for param
 
 const displayQuickStart = ref(true);
@@ -100,6 +101,13 @@ function expandVerseHandler(verse){
   ev.initVerse(verse);
   displayExpandedVerse.value = true;
 };
+function versionSelectHandler(){
+  // timeout so that the v-model binding can update first
+  setTimeout(()=>{
+    bs.changeVersion();
+    searchHandler();
+  }, 1)
+}
 
 onMounted(() => {
   getVerses();
@@ -163,35 +171,11 @@ onUnmounted(()=>{
                       <use href="/src/assets/bootstrap-icons.svg#gear"/>
             </svg>
             <span>Bible version selector</span>
-
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="Bible Version Selector" id="kjvSelector" checked>
-              <label class="form-check-label" for="kjvSelector">
-                King James Version (KJV)
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="Bible Version Selector" id="esvSelector" >
-              <label class="form-check-label" for="esvSelector">
-                English Standard Version (ESV)
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="Bible Version Selector" id="nivSelector" >
-              <label class="form-check-label" for="nivSelector">
-                New International Version (NIV)
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="Bible Version Selector" id="webSelector" >
-              <label class="form-check-label" for="webSelector">
-                World English Bible (WEB)
-              </label>
-            </div>
-
+            <select class="form-select" aria-label="Bible Version Selector" v-model="bs.ver.value" @input="versionSelectHandler">
+              <option v-for="v in bs.versions" :value="v.ver">
+                {{ v.label }}
+              </option>
+            </select>
           </div>
 
           <div class="rounded shadow-sm p-3 my-3 bg-body-tertiary border border-body-tertiary">

@@ -156,10 +156,21 @@ export function bibleSelector(){
         {ver: 'web', label: 'World English Bible (WEB)'},
     ]
 
-    function changeVersion(ver) {
-        // find it from versions 
-        // if it exists, then proceed with change
-        // update ver.value to reflect new version
+    function changeVersion() {
+        switch(ver.value){
+            case 'kjv':
+                bible = kjv;
+                break;
+            case 'esv':
+                bible = esv;
+                break;
+            case 'niv':
+                bible = niv;
+                break;
+            case 'web':
+                bible = web;
+                break;
+        }
     }
-    return { changeVersion, ver }
+    return { changeVersion, ver, versions }
 }
