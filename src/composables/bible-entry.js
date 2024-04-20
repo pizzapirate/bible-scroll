@@ -1,5 +1,7 @@
 import { ref } from 'vue'
-import bible from '../kjv-formatted.json';
+import kjv from '../bibles/kjv.json'
+
+let bible = kjv; // default to KJV
 
 export function bibleVerseArray() {
     let verseIndex;
@@ -122,23 +124,59 @@ export function bibleHelper(){
     return{ getBookName };
 }
 export function expandVerse(){
+    let ver = ref(null);
     let verseIndex;
     let verse = ref(null);
 
-    function initVerse(_verse){
-        verseIndex = bible.findIndex((obj) => obj.Text === _verse.Text);
+    function initVerse(_verse, bsVer){
+        // HERE LIES THY PROBLEM - WE ARE INSTANTIATING A NEW BS, WHICH DEFAULTS TO KJV. 
+        // AND THEN WE ARE CALLING BIBLE, WHICH IS POSSIBLY ANOTHER VERSION ALTOGETHER...
 
+        // INIT DEFAULT VERSION - WHICH IS BS.VER
+        ver.value = bsVer.value;
+        // console.log(bsVer.value);
+
+        verseIndex = bible.findIndex((obj) => obj.Book === _verse.Book && obj.Chapter === _verse.Chapter && obj.Verse === _verse.Verse);
         verse.value = bible[verseIndex];
     };
+    async function getAnotherVersion(){
+        let b = await import(`../bibles/${ver.value}.json`);
+        verse.value = b.default[verseIndex];
+    }
     function previousVerse(){
+        // RESET EXPANDVERSE.VER
+        const bs = bibleSelector();
+        ver.value = bs.ver.value;
+
         verseIndex--;
         verse.value = bible[verseIndex];
     }
     function nextVerse(){
+        // RESET EXPANDVERSE.VER
+        const bs = bibleSelector();
+        ver.value = bs.ver.value;
+
         verseIndex++;
         verse.value = bible[verseIndex];
     }
 
-    return { verse, initVerse, previousVerse, nextVerse }
+    return { verse, initVerse, previousVerse, nextVerse, ver, getAnotherVersion }
 }
+export function bibleSelector(){
+    const ver = ref('kjv');
 
+    const versions = [
+        {ver: 'kjv', label: 'King James Version (KJV)'},
+        {ver: 'esv', label: 'English Standard Version (ESV)'},
+        {ver: 'niv', label: 'New International Version (NIV)'},
+        {ver: 'web', label: 'World English Bible (WEB)'},
+    ]
+
+    async function changeVersion() {
+        // const version = ver.value;
+        let bibleModule = await import(`../bibles/${ver.value}.json`);
+        bible = bibleModule.default;
+    }
+
+    return { changeVersion, ver, versions }
+}

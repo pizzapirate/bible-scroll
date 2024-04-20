@@ -1,21 +1,17 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 :root {
-    /*WoW colors from : https://pixelimperfectdotcom.wordpress.com/2013/09/05/all-world-of-warcraft-hex-color-codes/ */
-    /*MISC*/
-    --system: #FFFF00;
-    /*CHAT*/
-    --generalChat: #FEC1C0;
-    /*ITEMS*/
-    --poorItem: #889D9D;
-    --commonItem: #FFFFFF;
-    --uncommonItem: #1EFF0C;
-    --rareItem: #0070FF;
-    --epicItem: #A335EE;
-    --legendaryItem: #FF8000;
+    --gold: #F7DC6F;
+
+    --orange: #FFB600;
+    --orange-subtle: color(from var(--orange) srgb r g b / 0.5);
+    --peach: #FF8C49;
+    --peach-subtle: color(from var(--peach) srgb r g b / 0.5);
+    --caramel: #A57B26;
 }
 .pacifico {
     font-family: "Pacifico", cursive;
 }
+/* BUTTONS */
 .btn-circle {
     border-radius: 100%;
     min-width: 45px;
@@ -27,6 +23,49 @@
     align-items: center;
     padding: unset;
 }
-.main-hero-container {
+.btn-orange {
+    background-color: var(--orange);
+    font-weight: 500;
+}
+.btn-orange:hover {
+    background-color: var(--peach);
+}
+.btn-orange:active {
+    border-color: var(--peach) !important;
+    background-color: var(--peach) !important;
+}
+.highlight-word {
+    background-color: var(--gold);
+}
+.highlight-word-orange {
+    background-color: var(--orange);
+}
 
+/* BACKGROUNDS */
+.bg-orange {
+    background-color: var(--orange);
+}
+.bg-orange-subtle {
+    background-color: var(--orange-subtle);
+}
+
+/* OUTLINES */
+.outline {
+    outline: 2px solid #000;
+    outline-offset: -2px;
+}
+.outline-peach {
+    outline-color: var(--peach);
+}
+.outline-peach-subtle {
+    outline-color: var(--peach-subtle);
+}
+/* FOCUS */
+.focus-peach:focus {
+    box-shadow: unset;
+    outline: 3px solid var(--peach);
+}
+/* COMPONENTS */
+#loader {
+    min-height: 100vh;
 }
