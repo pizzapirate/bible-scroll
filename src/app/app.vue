@@ -98,9 +98,15 @@ function WordHighlighter(){
 }
 
 function expandVerseHandler(verse){
-  ev.initVerse(verse);
+  ev.initVerse(verse, bs.ver);
   displayExpandedVerse.value = true;
 };
+function expandVerseVersionSelectHandler(){
+    // timeout so that the v-model binding can update first
+    setTimeout(()=>{
+    ev.getAnotherVersion();
+  }, 1)
+}
 function versionSelectHandler(){
   // timeout so that the v-model binding can update first
   setTimeout(()=>{
@@ -180,7 +186,7 @@ onUnmounted(()=>{
 
           <div class="rounded shadow-sm p-3 my-3 bg-body-tertiary border border-body-tertiary">
             <p class="flex-wrap">Support by <span class="pacifico">Buying me a Coffee!</span></p>
-            <a class="btn btn-dark" href="/donate">Learn more</a>
+            <a class="btn btn-orange" href="/donate">Learn more</a>
           </div>
 
 
@@ -199,9 +205,10 @@ onUnmounted(()=>{
   <div class="container py-5">
     <div class="row justify-content-center">
            
-      <div class="col col-lg-9 d-flex flex-column gap-5 position-relative ">
+      <div class="col col-lg-9 d-flex flex-column gap-5 position-relative">
 
-        <div v-if="displayQuickStart" class="mx-2 bg-primary-subtle p-3 position-relative">
+        <!-- QUICK START CONTAINER -->
+        <div v-if="displayQuickStart" class="mx-2 p-3 position-relative bg-orange-subtle outline outline-peach-subtle rounded">
           <button @click="displayQuickStart = false" type="button" class="btn-close position-absolute end-0 top-0 m-3" aria-label="Close"></button>
           <p class="fs-1">Quick start</p>
           <p>       
@@ -245,7 +252,14 @@ onUnmounted(()=>{
 
     <div class="container">
       <div class="row justify-content-center">
-        
+
+        <select id="ev-bible-selector" class="form-select position-absolute outline outline-peach-subtle focus-peach" aria-label="Expanded Verse Bible Version Selector" 
+        v-model="ev.ver.value" @input="expandVerseVersionSelectHandler()">
+          <option v-for="v in bs.versions" :value="v.ver">
+            {{ v.label }}
+          </option>
+        </select>
+
         <div class="col col-lg-10 card shadow-sm mx-2">
           <div class="card-body">
             <blockquote class="blockquote mb-0">
@@ -268,6 +282,7 @@ onUnmounted(()=>{
               <use href="/src/assets/bootstrap-icons.svg#arrow-left"/>
             </svg>
           </button>
+
           <button class="btn btn-circle btn-dark shadow-sm" type="button" name="Next Verse" title="Next Verse" @click="ev.nextVerse()">
             <svg width="24" height="24" fill="currentColor">
               <use href="/src/assets/bootstrap-icons.svg#arrow-right"/>
@@ -278,6 +293,7 @@ onUnmounted(()=>{
 
   </div>
 
+  <!-- NO MORE VERSES -->
   <div v-if="mode === 1 && bva.verses.value.length > 0" class="py-5 d-flex align-items-center">
     <div class="container">
       <div class="row justify-content-center">
@@ -287,7 +303,7 @@ onUnmounted(()=>{
       </div>
     </div>
   </div>
-
+  <!-- NO VERSES -->
   <div v-if="mode === 2" class="py-5">
     <div class="container">
       <div class="row justify-content-center">
@@ -310,6 +326,13 @@ onUnmounted(()=>{
 .bg-blur {
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
+}
+
+#ev-bible-selector {
+  /* NAVBAR + 16PX */
+  top: 93px;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 </style>
 
