@@ -13,7 +13,6 @@ const displayExpandedVerse = ref(false);
 const displaySearchInput = ref(false);
 const searchQuery = ref(null);
 
-
 function searchHandler(){
   if (searchQuery.value !== null && searchQuery.value.trim() !== "") {
     mode.value = 1;
@@ -25,7 +24,6 @@ function searchHandler(){
     getVerses();
   };
 };
-
 function searchButtonHandler(){
   displaySearchInput.value = true;
 };
@@ -38,7 +36,6 @@ function closeButtonHandler() {
   displaySearchInput.value = false;
 };
 
-// Function to load more verses when user scrolls
 const loadMoreVerses = () => {
   const scrollPosition = window.scrollY;
   const windowHeight = window.innerHeight;
@@ -53,7 +50,6 @@ const loadMoreVerses = () => {
       bva.addNewVersesWithSearchQuery(searchQuery.value);
     }
   }
-
   if (mode.value === 1) {
       WordHighlighter();
   }
@@ -73,12 +69,11 @@ function getVerses(){
       if (bva.verses.value <= 0) { mode.value = 2;}
     }, 1);
   
-    if (mode.value === 1) {
-      WordHighlighter();
-    }
+  if (mode.value === 1) {
+    WordHighlighter();
+  }
 
 }
-
 function WordHighlighter(){
     // WORD HIGHLIGHTER
   setTimeout(() => {
@@ -96,7 +91,6 @@ function WordHighlighter(){
 
   }, 2)
 }
-
 function expandVerseHandler(verse){
   ev.initVerse(verse, bs.ver);
   displayExpandedVerse.value = true;
@@ -231,7 +225,16 @@ onUnmounted(()=>{
           </p>
         </div>
 
-        <div v-for="verse in bva.verses.value" class="card shadow-sm mx-2" @click="expandVerseHandler(verse)">
+        <!-- MODE SELECT -->
+        <!-- <div class="mx-2 p-3">
+          <button @click="" type="button" class="btn btn-secondary border btn-circle shadow-sm" name="Shuffle">
+              <svg width="24" height="24" fill="currentColor">
+                <use href="/src/assets/bootstrap-icons.svg#shuffle"/>
+              </svg>
+          </button>
+        </div> -->
+
+        <div v-for="verse in bva.verses.value" class="card shadow-sm mx-2 verse-card" @click="expandVerseHandler(verse)">
           <div class="card-body">
             <blockquote class="blockquote mb-0">
               <p class="bible-verse">{{ verse.Text ? verse.Text : 'Something went wrong :(' }}</p>
